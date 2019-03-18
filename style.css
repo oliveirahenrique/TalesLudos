@@ -46,7 +46,7 @@
     overflow: hidden;
 }
 
-.frame {
+#frame {
     background-color: white;
     border-style: solid;
     border-width: thin;

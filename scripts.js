@@ -19,7 +19,32 @@ function openScene(evt, scene) {
     evt.currentTarget.className += " active";
 }
 
+//var width = document.getElementById('frame').offsetWidth;
+//var height = document.getElementById('frame').offsetHeight;
+
+var stageDraw = new Konva.Stage({
+	container: 'frame',
+ 	width: 1000,
+  	height: 1000
+});
+
+var layerDraw = new Konva.Layer({
+	width: 1000,
+  	height: 1000
+});
+
 function addCena(evt) {
+	var newCircle = new Konva.Circle({
+	    radius: 20,
+	    stroke: 'black',
+	    strokeWidth: 1,
+	    fill: '#f5f5dc',
+	    x: 50,
+	    y: 50
+    });
+    newCircle.draggable(true);
+    layerDraw.add(newCircle);
+    layerDraw.draw();
     var novaCena = document.getElementById('cenaSelector');
     var numeroCena = novaCena.getElementsByClassName('accordion').length + 1;
     $('#cenaSelector').append('<button class="accordion" onclick="openScene(event, \'cena' + numeroCena + '\')\">Cena ' + numeroCena + '</button>\n' 
@@ -27,7 +52,10 @@ function addCena(evt) {
             + ' \t<div id=\"desafio' + numeroCena + '\"></div>\n' 
             + ' \t<button class=\"subaccordion\" onclick=\"addDesafio(event, \'desafio' + numeroCena + '\')\">+ Adicionar Desafio</button>\n' 
             + '</div>');
+    
 }
+
+stageDraw.add(layerDraw);
 
 function addDesafio(evt, cena) {
     var para = document.createElement("button");
