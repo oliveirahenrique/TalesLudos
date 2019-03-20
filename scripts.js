@@ -29,19 +29,10 @@ var stageDraw = new Konva.Stage({
 });
 
 var layerDraw = new Konva.Layer();
+var tooltipLayer = new Konva.Layer();
 
 function addCena(evt) {
-	var newCircle = new Konva.Circle({
-	    radius: 20,
-	    stroke: 'black',
-	    strokeWidth: 1,
-	    fill: '#f5f5dc',
-	    x: 50,
-	    y: 50
-    });
-    newCircle.draggable(true);
-    layerDraw.add(newCircle);
-    layerDraw.draw();
+	
     var novaCena = document.getElementById('cenaSelector');
     var numeroCena = novaCena.getElementsByClassName('accordion').length + 1;
     $('#cenaSelector').append('<button class="accordion" onclick="openScene(event, \'cena' + numeroCena + '\')\">Cena ' + numeroCena + '</button>\n' 
@@ -50,9 +41,44 @@ function addCena(evt) {
             + ' \t<button class=\"subaccordion\" onclick=\"addDesafio(event, \'desafio' + numeroCena + '\')\">+ Adicionar Desafio</button>\n' 
             + '</div>');
     
-}
 
-stageDraw.add(layerDraw);
+    var newCircle = new Konva.Circle({
+        name: "Cena " + numeroCena,
+        radius: 20,
+        stroke: 'black',
+        strokeWidth: 1,
+        fill: '#f5f5dc',
+        x: 50,
+        y: 50
+    });
+
+    newCircle.on("mousemove", function()
+    {
+        var mousePos = stageDraw.getPointerPosition();
+        tooltip.position({
+            x : mousePos.x + 10,
+            y : mousePos.y + 10
+        });
+        tooltip.text(newCircle.name());
+        tooltip.show();
+        tooltipLayer.batchDraw();
+    });
+
+    newCircle.on("mouseout", function(){
+        tooltip.hide();
+        tooltipLayer.draw();
+    });
+
+    newCircle.on("dragmove", function()
+    {
+        tooltip.hide();
+        tooltipLayer.draw();
+    });
+
+    newCircle.draggable(true);
+    layerDraw.add(newCircle);
+    layerDraw.draw();
+}
 
 function addDesafio(evt, cena) {
     var para = document.createElement("button");
@@ -63,3 +89,19 @@ function addDesafio(evt, cena) {
     para.classList.add("subaccordion");
     novaCena.appendChild(para);
 }
+
+var tooltip = new Konva.Text({
+        text: "",
+        fontFamily: "Calibri",
+        fontSize: 20,
+        padding: 5,
+        textFill: "white",
+        fill: "black",
+        alpha: 0.75,
+        visible: false
+});
+
+
+tooltipLayer.add(tooltip);
+stageDraw.add(layerDraw);
+stageDraw.add(tooltipLayer);
