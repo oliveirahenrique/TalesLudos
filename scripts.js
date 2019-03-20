@@ -19,19 +19,16 @@ function openScene(evt, scene) {
     evt.currentTarget.className += " active";
 }
 
-//var width = document.getElementById('frame').offsetWidth;
-//var height = document.getElementById('frame').offsetHeight;
+var width = document.getElementById('frame').clientWidth;
+var height = document.getElementById('frame').clientHeight;
 
 var stageDraw = new Konva.Stage({
 	container: 'frame',
- 	width: 1000,
-  	height: 1000
+ 	width: width,
+  	height: height
 });
 
-var layerDraw = new Konva.Layer({
-	width: 1000,
-  	height: 1000
-});
+var layerDraw = new Konva.Layer();
 
 function addCena(evt) {
 	var newCircle = new Konva.Circle({

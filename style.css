@@ -51,8 +51,11 @@
     border-style: solid;
     border-width: thin;
     position: relative;
-    width: 100%;
-    padding-top: 56.25%;
+    width: 95%;
+    height: 90vh;
+    margin-right: 50px;
+    padding-right: 0px;  
+    padding-bottom: 0;"
 }
 
 .sideBar {
