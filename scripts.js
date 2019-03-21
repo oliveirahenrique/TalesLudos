@@ -1,3 +1,27 @@
+
+function openTab(evt, tab) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tab).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+document.getElementById("defaultOpen").click();
+
 function openScene(evt, scene) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -19,11 +43,22 @@ function openScene(evt, scene) {
     evt.currentTarget.className += " active";
 }
 
-var width = document.getElementById('frame').clientWidth;
-var height = document.getElementById('frame').clientHeight;
+function openDesafio(evt) {
+    var i, desafios;
+
+    desafios = document.getElementsByClassName("desafio");
+    for (i = 0; i < desafios.length; i++) {
+        desafios[i].className = desafios[i].className.replace(" active", "");
+    }
+
+    evt.currentTarget.className += " active";
+}
+
+var width = document.getElementById('Jornada').clientWidth;
+var height = document.getElementById('Jornada').clientHeight;
 
 var stageDraw = new Konva.Stage({
-	container: 'frame',
+	container: 'Jornada',
  	width: width,
   	height: height
 });
@@ -87,6 +122,8 @@ function addDesafio(evt, cena) {
     var t = document.createTextNode("Desafio " + numeroDesafio);
     para.appendChild(t);
     para.classList.add("subaccordion");
+    para.classList.add("desafio");
+    para.setAttribute("onclick","openDesafio(event)");
     novaCena.appendChild(para);
 }
 

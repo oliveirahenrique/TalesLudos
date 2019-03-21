@@ -26,8 +26,15 @@
                     <button class="accordion" onclick="addCena(event)">+ Adicionar Cena</button>
                 </div>
             </div>
-            <div class="col" style="height: 90vh; margin-right: 50px; padding-right: 0px; padding-top: 20px; padding-bottom: 0;">
-                <div id="frame"></div>
+            <div class="col frame-fixer">
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'Jornada')" id="defaultOpen">Jornada</button>
+                    <button class="tablinks" onclick="openTab(event, 'Cena')">Cena</button>
+                    <button class="tablinks" onclick="openTab(event, 'Desafio')">Desafio</button>
+                </div>
+                <div id="Jornada" class="frame tabcontent"></div>
+                <div id="Cena" class="frame tabcontent"></div>
+                <div id="Desafio" class="frame tabcontent"></div>
             </div>
         </div>
         
