@@ -82,7 +82,7 @@ function addCena(evt) {
         radius: 20,
         stroke: 'black',
         strokeWidth: 1,
-        fill: '#f5f5dc',
+        fill: '#0099f6',
         x: 50,
         y: 50
     });
@@ -108,6 +108,11 @@ function addCena(evt) {
     {
         tooltip.hide();
         tooltipLayer.draw();
+    });
+    
+    newCircle.on("dblclick dbltap", function()
+    {
+    	$('#modal_cena_explain').modal('show');
     });
 
     newCircle.draggable(true);
@@ -138,7 +143,7 @@ var tooltip = new Konva.Text({
         visible: false
 });
 
-
 tooltipLayer.add(tooltip);
 stageDraw.add(layerDraw);
 stageDraw.add(tooltipLayer);
+
