@@ -156,3 +156,29 @@ button.upload_button {
 	align-items: center;
 	justify-content: center;
 }
+
+.login-button:hover{
+	background-color: #85d1ff;
+	color: black;
+	transition: 0.5s;	
+}
+
+.login-button.active {
+	background-color: #0099f6;
+	color: white;
+}
+
+.login-button {
+	float: right;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	transition: 0.5s;	
+	cursor: pointer;	
+	border: none;
+	outline: none;
+	background-color: #e6f3ff;
+	
+}
