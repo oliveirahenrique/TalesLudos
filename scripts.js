@@ -40,7 +40,7 @@ function openScene(evt, scene) {
 
     // Show the current tab, and add an "active" class to the link that opened the tab
     document.getElementById(scene).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.parentNode.className += " active";
 }
 
 function openDesafio(evt) {
@@ -70,11 +70,16 @@ function addCena(evt) {
 	
     var novaCena = document.getElementById('cenaSelector');
     var numeroCena = novaCena.getElementsByClassName('accordion').length + 1;
-    $('#cenaSelector').append('<button class="accordion" onclick="openScene(event, \'cena' + numeroCena + '\')\">Cena ' + numeroCena + '</button>\n' 
-            + '<div id=\"cena' + numeroCena + '\" class=\"panel\">\n' 
-            + ' \t<div id=\"desafio' + numeroCena + '\"></div>\n' 
-            + ' \t<button class=\"subaccordion\" onclick=\"addDesafio(event, \'desafio' + numeroCena + '\')\">+ Adicionar Desafio</button>\n' 
-            + '</div>');
+    var textBlock = '';
+    textBlock += '<div class="accordion">';
+    textBlock += '  <button onclick="openScene(event, \'cena' + numeroCena + '\')\">Cena ' + numeroCena + '</button>\n';
+    textBlock += '  <button class="close" onclick="deleteCena(event)">x</button>';
+    textBlock += '</div>';
+    textBlock += '<div id=\"cena' + numeroCena + '\" class=\"panel\">\n';
+    textBlock += '  <div id=\"desafio' + numeroCena + '\"></div>\n';
+    textBlock += '  <button class=\"subaccordion\" onclick=\"addDesafio(event, \'desafio' + numeroCena + '\')\">+ Adicionar Desafio</button>\n';
+    textBlock += '</div>';
+    $('#cenaSelector').append(textBlock);
     
 
     var newCircle = new Konva.Circle({
@@ -147,3 +152,7 @@ tooltipLayer.add(tooltip);
 stageDraw.add(layerDraw);
 stageDraw.add(tooltipLayer);
 
+function deleteCena(evt) {
+    var element = evt.currentTarget.parentNode;
+    element.parentNode.removeChild(element);
+}

@@ -141,12 +141,35 @@ body {
 	background-color: #b9deff;;
 	color: #444;
 	cursor: pointer;
-	padding: 18px;
 	width: 100%;
-	text-align: left;
 	border: none;
 	outline: none;
 	transition: 0.5s;
+}
+
+.accordion:hover:not(.active) {
+	background-color: #85d1ff;
+	color: black;
+	transition: 0.5s;
+}
+
+.accordion button {
+	text-align: left;
+	padding: 18px;
+	background-color: inherit;
+	width: 90%;
+	height: 100%;
+	border: none;
+	outline: none;
+	color: inherit;
+}
+
+.accordion button.close{
+	float:right;
+	padding: 18px;
+	background-color: inherit;
+	width: 10%;
+	height: 100%;
 }
 
 .subaccordion {
@@ -174,12 +197,6 @@ body {
 .active {
 	background-color: #0099f6;
 	color: white;
-}
-
-.accordion:hover {
-	background-color: #85d1ff;
-	color: black;
-	transition: 0.5s;
 }
 
 /* Style the accordion panel. Note: hidden by default */

@@ -20,9 +20,23 @@
 				<img src="./img/talesludos.png" width="200" height="200">
 			</div>
 			<div class="sideBar">
-				<div id="cenaSelector"></div>
-				<button class="accordion" onclick="addCena(event)">+
-					Adicionar Cena</button>
+				<div id="cenaSelector">
+					<!-- Exemplo -->
+					<!--
+					<div class="accordion">
+						<button onclick="openScene(event, 'cena1')">Cena 1</button>
+						<button class="close" onclick="deleteCena(event)">x</button>
+					</div>
+					<div id="cena1" class="panel">
+						<div id="desafio1"></div>
+						<button class="subaccordion" onclick="addDesafio(event, 'desafio1')">+ Adicionar Desafio</button>
+					</div>
+					-->
+					<!-- End -->
+				</div>
+				<div class="accordion">
+					<button onclick="addCena(event)">+ Adicionar Cena</button>
+				</div>
 			</div>
 		</div>
 		<div class="col-8 frame-fixer">
