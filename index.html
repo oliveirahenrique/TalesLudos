@@ -4,9 +4,6 @@
 <title>Prototipo</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="container-fluid">
@@ -27,13 +24,14 @@
 					Adicionar Cena</button>
 			</div>
 		</div>
-		<div class="col frame-fixer">
+		<div class="col-8 frame-fixer">
 			<div class="tab">
 				<button class="tablinks" onclick="openTab(event, 'Jornada')"
 					id="defaultOpen">Jornada</button>
 				<button class="tablinks" onclick="openTab(event, 'Cena')">Cena</button>
 				<button class="tablinks" onclick="openTab(event, 'Desafio')">Desafio</button>
 			</div>
+			<button class="btn">Play</button>
 			<div id="Jornada" class="frame tabcontent">
 				<form>
 					<input type="image" src="./img/upload_image.png" width="48"
