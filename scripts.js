@@ -73,7 +73,7 @@ function addCena(evt) {
     var textBlock = '';
     textBlock += '<div class="accordion">';
     textBlock += '  <button onclick="openScene(event, \'cena' + numeroCena + '\')\">Cena ' + numeroCena + '</button>\n';
-    textBlock += '  <button class="close" onclick="deleteCena(event)">x</button>';
+    textBlock += '  <button class="close" onclick="deleteCena(event, \'cena' + numeroCena + '\')">x</button>';
     textBlock += '</div>';
     textBlock += '<div id=\"cena' + numeroCena + '\" class=\"panel\">\n';
     textBlock += '  <div id=\"desafio' + numeroCena + '\"></div>\n';
@@ -152,7 +152,9 @@ tooltipLayer.add(tooltip);
 stageDraw.add(layerDraw);
 stageDraw.add(tooltipLayer);
 
-function deleteCena(evt) {
+function deleteCena(evt, cena) {
     var element = evt.currentTarget.parentNode;
+    var desafios = document.getElementById(cena);
+    desafios.parentNode.removeChild(desafios);
     element.parentNode.removeChild(element);
 }
