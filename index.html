@@ -46,13 +46,10 @@
 				<button class="tablinks" onclick="openTab(event, 'Cena')">Cena</button>
 				<button class="tablinks" onclick="openTab(event, 'Desafio')">Desafio</button>
 			</div>
+			<label for="selecionar-imagem" class="btn" type="file"><i class="fa fa-picture-o"></i> Trocar Fundo</label>
+			<input id="selecionar-imagem" type="file"/ style="display:none;">
 			<button class="btn"><i class="fa fa-play"></i> Visualizar</button>
-			<div id="Jornada" class="frame tabcontent">
-				<form>
-					<input type="image" src="./img/upload_image.png" width="48"
-						height="48">
-				</form>
-			</div>
+			<div id="Jornada" class="frame tabcontent"></div>
 			<div id="Cena" class="frame tabcontent"></div>
 			<div id="Desafio" class="frame tabcontent"></div>
 		</div>
@@ -86,6 +83,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<script src="https://unpkg.com/konva@2.4.2/konva.min.js"></script>
+	
 	<script src="./scripts.js"></script>
+	<script src='./konvaScripts.js'></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 function openTab(evt, tab) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -21,6 +20,7 @@ function openTab(evt, tab) {
 }
 
 document.getElementById("defaultOpen").click();
+
 
 function openScene(evt, scene) {
     // Declare all variables
@@ -54,18 +54,6 @@ function openDesafio(evt) {
     evt.currentTarget.className += " active";
 }
 
-var width = document.getElementById('Jornada').clientWidth;
-var height = document.getElementById('Jornada').clientHeight;
-
-var stageDraw = new Konva.Stage({
-	container: 'Jornada',
- 	width: width,
-  	height: height
-});
-
-var layerDraw = new Konva.Layer();
-var tooltipLayer = new Konva.Layer();
-
 function addCena(evt) {
 	
     var novaCena = document.getElementById('cenaSelector');
@@ -81,48 +69,7 @@ function addCena(evt) {
     textBlock += '</div>';
     $('#cenaSelector').append(textBlock);
     
-
-    var newCircle = new Konva.Circle({
-        name: "Cena " + numeroCena,
-        radius: 20,
-        stroke: 'black',
-        strokeWidth: 1,
-        fill: '#0099f6',
-        x: 50,
-        y: 50
-    });
-
-    newCircle.on("mousemove", function()
-    {
-        var mousePos = stageDraw.getPointerPosition();
-        tooltip.position({
-            x : mousePos.x + 10,
-            y : mousePos.y + 10
-        });
-        tooltip.text(newCircle.name());
-        tooltip.show();
-        tooltipLayer.batchDraw();
-    });
-
-    newCircle.on("mouseout", function(){
-        tooltip.hide();
-        tooltipLayer.draw();
-    });
-
-    newCircle.on("dragmove", function()
-    {
-        tooltip.hide();
-        tooltipLayer.draw();
-    });
-    
-    newCircle.on("dblclick dbltap", function()
-    {
-    	$('#modal_cena_explain').modal('show');
-    });
-
-    newCircle.draggable(true);
-    layerDraw.add(newCircle);
-    layerDraw.draw();
+    addSceneCircleInJourney(numeroCena);
 }
 
 function addDesafio(evt, cena) {
@@ -137,24 +84,33 @@ function addDesafio(evt, cena) {
     novaCena.appendChild(para);
 }
 
-var tooltip = new Konva.Text({
-        text: "",
-        fontFamily: "Calibri",
-        fontSize: 20,
-        padding: 5,
-        textFill: "white",
-        fill: "black",
-        alpha: 0.75,
-        visible: false
-});
-
-tooltipLayer.add(tooltip);
-stageDraw.add(layerDraw);
-stageDraw.add(tooltipLayer);
-
 function deleteCena(evt, cena) {
     var element = evt.currentTarget.parentNode;
     var desafios = document.getElementById(cena);
     desafios.parentNode.removeChild(desafios);
     element.parentNode.removeChild(element);
+    
+    var numeroCena = cena.substring(4);
+    
+    console.log(numeroCena);
+    
+    removeSceneCircleFromJourney(numeroCena);
 }
+
+$("#selecionar-imagem").change(function(){
+	var file = this.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+       $('#Jornada').css('background-image', 'url("' + reader.result + '")');
+       $('#Jornada').css('background-size', 'cover');
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+    }
+});
+
+
+
+
+
