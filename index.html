@@ -25,11 +25,18 @@
 					<!--
 					<div class="accordion">
 						<button class="col-8" onclick="openScene(event, 'cena1')">Cena 1</button>
-						<button class="close col-3" onclick="deleteCena(event, 'cena1')">x</button>
+						<button class="close col-4" onclick="deleteCena(event, 'cena1')">x</button>
 					</div>
 					<div id="cena1" class="panel">
-						<div id="desafio1"></div>
-						<button class="subaccordion" onclick="addDesafio(event, 'desafio1')">+ Adicionar Desafio</button>
+						<div id="desafioSelector1">
+							<div class="subaccordion">
+								<button class="col-8" onclick="openDesafio(event)">Desafio 1</button>
+								<button class="close col-4" onclick="deleteDesafio(event)">x</button>
+							</div>
+						</div>
+						<div class="subaccordion">
+							<button onclick="addDesafio(event, 'desafioSelector1')">+ Adicionar Desafio</button>
+						</div>
 					</div>
 					-->
 					<!-- End -->

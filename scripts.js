@@ -54,34 +54,34 @@ function openDesafio(evt) {
     evt.currentTarget.className += " active";
 }
 
+var sceneNumber = 0;
+
 function addCena(evt) {
-	
-    var novaCena = document.getElementById('cenaSelector');
-    var numeroCena = novaCena.getElementsByClassName('accordion').length + 1;
+    sceneNumber++;
     var textBlock = '';
     textBlock += '<div class="accordion">';
-    textBlock += '  <button onclick="openScene(event, \'cena' + numeroCena + '\')\">Cena ' + numeroCena + '</button>\n';
-    textBlock += '  <button class="close" onclick="deleteCena(event, \'cena' + numeroCena + '\')">x</button>';
+    textBlock += '  <button class=\"col-8\" onclick="openScene(event, \'cena' + sceneNumber + '\')\">Cena ' + sceneNumber + '</button>\n';
+    textBlock += '  <button class=\"close col-4\" onclick="deleteCena(event, \'cena' + sceneNumber + '\')">x</button>';
     textBlock += '</div>';
-    textBlock += '<div id=\"cena' + numeroCena + '\" class=\"panel\">\n';
-    textBlock += '  <div id=\"desafio' + numeroCena + '\"></div>\n';
-    textBlock += '  <button class=\"subaccordion\" onclick=\"addDesafio(event, \'desafio' + numeroCena + '\')\">+ Adicionar Desafio</button>\n';
+    textBlock += '<div id=\"cena' + sceneNumber + '\" class=\"panel\">\n';
+    textBlock += '  <div id=\"desafioSelector' + sceneNumber + '\"></div>\n';
+    textBlock += '  <div class=\"subaccordion\">';
+    textBlock += '    <button onclick="addDesafio(event, \'desafioSelector' + sceneNumber + '\')">+ Adicionar Desafio</button>';
+    textBlock += '  </div>';
     textBlock += '</div>';
     $('#cenaSelector').append(textBlock);
     
-    addSceneCircleInJourney(numeroCena);
+    addSceneCircleInJourney(sceneNumber);
 }
 
-function addDesafio(evt, cena) {
-    var para = document.createElement("button");
-    var novaCena = document.getElementById(cena);
-    var numeroDesafio = novaCena.getElementsByTagName('button').length + 1;
-    var t = document.createTextNode("Desafio " + numeroDesafio);
-    para.appendChild(t);
-    para.classList.add("subaccordion");
-    para.classList.add("desafio");
-    para.setAttribute("onclick","openDesafio(event)");
-    novaCena.appendChild(para);
+function addDesafio(evt, selector) {
+    var numeroDesafio = document.getElementById(selector).getElementsByClassName('subaccordion').length + 1;
+    var textBlock = '';
+    textBlock += '<div class=\"subaccordion\">';
+    textBlock += '  <button class=\"col-8\" onclick=\"openDesafio(event)\">Desafio ' + numeroDesafio + '</button>';
+    textBlock += '  <button class=\"close col-4\" onclick=\"deleteDesafio(event)\">x</button>';
+    textBlock += '</div>';
+    $('#' + selector).append(textBlock);
 }
 
 function deleteCena(evt, cena) {
@@ -91,10 +91,15 @@ function deleteCena(evt, cena) {
     element.parentNode.removeChild(element);
     
     var numeroCena = cena.substring(4);
-    
+
     console.log(numeroCena);
     
     removeSceneCircleFromJourney(numeroCena);
+}
+
+function deleteDesafio(evt) {
+    var element = evt.currentTarget.parentNode;
+    element.parentNode.removeChild(element);
 }
 
 $("#selecionar-imagem").change(function(){
