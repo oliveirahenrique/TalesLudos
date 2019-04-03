@@ -54,10 +54,14 @@ function openDesafio(evt) {
     evt.currentTarget.className += " active";
 }
 
-var sceneNumber = 0;
+var jorney = new Jorney('Test');
 
 function addCena(evt) {
-    sceneNumber++;
+    jorney.sceneNumber++;
+    var sceneNumber = jorney.sceneNumber;
+
+    var element = document.createElement("div");
+
     var textBlock = '';
     textBlock += '<div class="accordion">';
     textBlock += '  <button class=\"col-8\" onclick="openScene(event, \'cena' + sceneNumber + '\')\">Cena ' + sceneNumber + '</button>\n';
@@ -69,18 +73,27 @@ function addCena(evt) {
     textBlock += '    <button onclick="addDesafio(event, \'desafioSelector' + sceneNumber + '\')">+ Adicionar Desafio</button>';
     textBlock += '  </div>';
     textBlock += '</div>';
-    $('#cenaSelector').append(textBlock);
+
+    element.innerHTML = textBlock;
+
+    var scene = new Scene('cena' + sceneNumber, element);
+    jorney.scene.push(scene);
+
+    $('#cenaSelector').append(element);
     
-    addSceneCircleInJourney(sceneNumber);
+    addSceneCircleInJourney(jorney.sceneNumber);
 }
 
 function addDesafio(evt, selector) {
-    var numeroDesafio = document.getElementById(selector).getElementsByClassName('subaccordion').length + 1;
+    var scene = jorney.getSceneByName('cena' + selector[selector.length-1]);
+
+    var numeroDesafio = scene.getNextChallengeNumber;
     var textBlock = '';
     textBlock += '<div class=\"subaccordion\">';
     textBlock += '  <button class=\"col-8\" onclick=\"openDesafio(event)\">Desafio ' + numeroDesafio + '</button>';
     textBlock += '  <button class=\"close col-4\" onclick=\"deleteDesafio(event)\">x</button>';
     textBlock += '</div>';
+
     $('#' + selector).append(textBlock);
 }
 
@@ -90,16 +103,22 @@ function deleteCena(evt, cena) {
     desafios.parentNode.removeChild(desafios);
     element.parentNode.removeChild(element);
     
-    var numeroCena = cena.substring(4);
+    var sceneNumber = cena.substring(4);
 
-    console.log(numeroCena);
+    jorney.deleteSceneByName('cene' + sceneNumber);
+
+    console.log(sceneNumber);
     
-    removeSceneCircleFromJourney(numeroCena);
+    removeSceneCircleFromJourney(sceneNumber);
 }
 
-function deleteDesafio(evt) {
+function deleteDesafio(evt, selector) {
     var element = evt.currentTarget.parentNode;
+    var id = element.parentNode.id;
+    var scene = jorney.getSceneByName('cene' + id[id.length-1]);
     element.parentNode.removeChild(element);
+
+
 }
 
 $("#selecionar-imagem").change(function(){
