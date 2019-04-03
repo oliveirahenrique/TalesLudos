@@ -69,11 +69,16 @@ window.addSceneCircleInJourney = function (sceneNumber)
 	scenesLayer.draw();
 
 	group.on('click', function() {
+       // var transform = group.getParent().getAbsoluteTransform().copy();
+      //  transform.invert();
+
+		var pos = journeyStage.getPointerPosition();
+		//var PointPosition = transform.point(pos);
+
        	var arrow = new Konva.Arrow({
-      		x:  4,
-      		y:  4,
+      		
       		draggable: true,
-      		points: [0,0, 10, 50],
+      		points: [pos.x, pos.y, 10, 50],
       		pointerLength: 10,
       		pointerWidth : 10,
       		fill: 'black',
@@ -109,9 +114,9 @@ window.addArrayFromJourney = function(group)
     var layer = new Konva.Layer();
 
     var arrow = new Konva.Arrow({
-      x: stage.width() / 4,
-      y: stage.height() / 4,
-      points: [0,0, width / 2, height / 2],
+      x: System.Windows.Forms.Cursor.Positon.x,
+      y: System.Windows.Forms.Cursor.Positon.y,
+      points: [x,y, x+20, y+20],
       pointerLength: 20,
       pointerWidth : 20,
       fill: 'black',
