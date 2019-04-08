@@ -58,9 +58,6 @@ window.addSceneCircleInJourney = function (sceneNumber)
         x: -4,
         y: -7
 	});
-
-	
-
 	
 	group.add(circle).add(text);
 	
@@ -68,31 +65,45 @@ window.addSceneCircleInJourney = function (sceneNumber)
 	scenesLayer.add(group);
 	scenesLayer.draw();
 
-	group.on('click', function() {
+	var x, y, BoolClick = false;
+
+	journeyStage.on('click', function() {
        // var transform = group.getParent().getAbsoluteTransform().copy();
       //  transform.invert();
 
 		var pos = journeyStage.getPointerPosition();
 		//var PointPosition = transform.point(pos);
 
-       	var arrow = new Konva.Arrow({
-      		
-      		draggable: true,
-      		points: [pos.x, pos.y, 10, 50],
-      		pointerLength: 10,
-      		pointerWidth : 10,
-      		fill: 'black',
-      		stroke: 'black',
-      		strokeWidth: 0,
-    	});
-       	//Funções de verificação do desenho da seta.. 
-       	scenesLayer.add(arrow);
-       	scenesLayer.draw();
+		
+			if(!BoolClick){
+				x = pos.x;
+				y = pos.y;
+				BoolClick = true;
+			}else {
+				BoolClick = false;
+		       	var arrow = new Konva.Arrow({
+		      		
+		      		draggable: true,
+		      		points: [x, y, pos.x, pos.y],
+		      		pointerLength: 10,
+		      		pointerWidth : 10,
+		      		fill: 'black',
+		      		stroke: 'black',
+		      		strokeWidth: 0,
+		    	});
+		       	//Funções de verificação do desenho da seta.. 
+		       	scenesLayer.add(arrow);
+		       	scenesLayer.draw();
+	       }
+   		
+
     });
 
 
 
 }
+
+
 
 
 window.removeSceneCircleFromJourney = function (sceneNumber)
