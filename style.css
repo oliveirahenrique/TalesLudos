@@ -135,7 +135,64 @@ body {
 }
 /*End*/
 
-/* Style the buttons that are used to open and close the accordion panel */
+/*Top navigation bar*/
+.topnav {
+	overflow: hidden;
+}
+
+.topnav a {
+	float: left;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	transition: 0.5s;
+}
+
+.topnav a:hover {
+	background-color: #85d1ff;
+	color: black;
+	transition: 0.5s;
+}
+
+.topnav a.active {
+	background-color: #0099f6;
+	color: white;
+}
+
+.login-button {
+	float: right;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	transition: 0.5s;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background-color: #e6f3ff;
+}
+
+.login-button:hover{
+	background-color: #85d1ff;
+	color: black;
+	transition: 0.5s;
+}
+
+.login-button.active {
+	background-color: #0099f6;
+	color: white;
+}
+/*End*/
+
+/*Side bar and accordion*/
+.sideBar {
+	overflow-y: auto;
+	height: 60vh;
+}
+
 .accordion {
 	font-size: 15px;
 	background-color: #b9deff;
@@ -164,12 +221,20 @@ body {
 	color: inherit;
 }
 
-.accordion button.close{
+button.delete{
 	float:right;
-	padding: 18px;
+	padding-top: 15px;
+	padding-right: 20px;
+	padding-bottom: 0px;
 	background-color: inherit;
 	width: 10%;
 	height: 100%;
+	color: inherit;
+	font-size: 20px;
+	font-weight: bold;
+	border: none;
+	outline: none;
+	cursor: pointer;
 }
 
 .subaccordion {
@@ -206,26 +271,66 @@ body {
 	color: inherit;
 }
 
-.subaccordion button.close{
-	float:right;
-	padding: 18px;
+.subaccordion button.delete{
+	color: inherit;
 	background-color: inherit;
+	padding-top: 15px;
+	padding-right: 20px;
+	padding-bottom: 0px;
 	width: 10%;
 	height: 100%;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active {
 	background-color: #0099f6;
 	color: white;
 }
 
-/* Style the accordion panel. Note: hidden by default */
 .panel {
 	background-color: white;
 	display: none;
 	overflow: hidden;
 }
+/*End*/
+
+/*Tab navigation*/
+.tab {
+	width: 100%;
+	display: inline;
+	overflow: hidden;
+	background-color: #b9deff;
+}
+
+.tab button {
+	font-size: 15px;
+	margin-right: 5px;
+	border-radius: 10px 10px 0px 0px;
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 10px 16px;
+	transition: 0.5s;
+}
+
+.tab button:hover {
+	background-color: #85d1ff;
+	color: black;
+	transition: 0.5s;
+}
+
+.tab button.active {
+	background-color: #0099f6;
+	color: white;
+}
+
+.tabcontent {
+	background-color: white;
+	display: none;
+	overflow: hidden;
+}
+/*End*/
 
 .frame-fixer {
 	height: 90vh;
@@ -247,83 +352,8 @@ body {
 	padding-bottom: 0;
 }
 
-.sideBar {
-	overflow-y: auto;
-	height: 60vh;
-}
-
-/* Add a black background color to the top navigation */
-.topnav {
-	overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-	float: left;
-	color: black;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 17px;
-	transition: 0.5s;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-	background-color: #85d1ff;
-	color: black;
-	transition: 0.5s;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-	background-color: #0099f6;
-	color: white;
-}
-
-.tab {
-	width: 100%;
-	display: inline;
-	overflow: hidden;
-	background-color: #b9deff;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-	font-size: 15px;
-	margin-right: 5px;
-	border-radius: 10px 10px 0px 0px;
-	background-color: inherit;
-	float: left;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 10px 16px;
-	transition: 0.5s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-	background-color: #85d1ff;
-	color: black;
-	transition: 0.5s;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-	background-color: #0099f6;
-	color: white;
-}
-
-.tabcontent {
-	background-color: white;
-	display: none;
-	overflow: hidden;
-}
-
 .btn {
 	font-size: 15px;
-	float: right;
 	background-color: #b9deff;
 	margin-right: 5px;
 	border-radius: 10px;
@@ -334,6 +364,15 @@ body {
 	transition: 0.5s;
 }
 
+.red {
+	background-color: red;
+	color: white;
+}
+
+.right {
+	float: right;
+}
+
 button.upload_button {
 	background-image: url("./img/upload_image.png") no-repeat;
 	display: flex;
@@ -341,27 +380,70 @@ button.upload_button {
 	justify-content: center;
 }
 
-.login-button {
-	float: right;
-	color: black;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 17px;
-	transition: 0.5s;	
-	cursor: pointer;	
-	border: none;
-	outline: none;
-	background-color: #e6f3ff;
+/*Modal*/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: white;
+	background-color: rgba(0,0,0,0.4);
+	padding-top: 100px;
+}
+/* Modal Header */
+.modal-header {
+	padding: 2px 16px;
 }
 
-.login-button:hover{
-	background-color: #85d1ff;
-	color: black;
+/* Modal Body */
+.modal-body {padding: 8px 16px 5px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+	padding: 5px 16px 10px 16px;
+	text-align: center;
+}
+
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 10px;
+	border: 1px solid #888;
+	border-radius: 10px;
+	width: 40%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 0; opacity: 1}
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	background-color: inherit;
+	border: none;
+	outline: none;
+	cursor: pointer;
 	transition: 0.5s;
 }
 
-.login-button.active {
-	background-color: #0099f6;
-	color: white;
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
+/*End*/

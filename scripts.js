@@ -39,7 +39,8 @@ function openScene(evt, scene) {
     }
 
     // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(scene).style.display = "block";
+    var element = document.getElementById(scene).getElementsByClassName('panel');
+    element[0].style.display = "block";
     evt.currentTarget.parentNode.className += " active";
 }
 
@@ -51,7 +52,7 @@ function openDesafio(evt) {
         desafios[i].className = desafios[i].className.replace(" active", "");
     }
 
-    evt.currentTarget.className += " active";
+    evt.currentTarget.parentNode.className += " active";
 }
 
 var jorney = new Jorney('Test');
@@ -63,20 +64,22 @@ function addCena(evt) {
     var element = document.createElement("div");
 
     var textBlock = '';
-    textBlock += '<div class="accordion">';
-    textBlock += '  <button class=\"col-8\" onclick="openScene(event, \'cena' + sceneNumber + '\')\">Cena ' + sceneNumber + '</button>\n';
-    textBlock += '  <button class=\"close col-4\" onclick="deleteCena(event, \'cena' + sceneNumber + '\')">x</button>';
-    textBlock += '</div>';
-    textBlock += '<div id=\"cena' + sceneNumber + '\" class=\"panel\">\n';
-    textBlock += '  <div id=\"desafioSelector' + sceneNumber + '\"></div>\n';
-    textBlock += '  <div class=\"subaccordion\">';
-    textBlock += '    <button onclick="addDesafio(event, \'desafioSelector' + sceneNumber + '\')">+ Adicionar Desafio</button>';
+    textBlock += '<div id="c' + sceneNumber + '">';
+    textBlock += '  <div class="accordion">';
+    textBlock += '      <button class=\"col-8\" onclick="openScene(event, \'c' + sceneNumber + '\')\">Cena ' + sceneNumber + '</button>\n';
+    textBlock += '      <button class="delete col-4" onclick="deleteWarning(event, \'c' + sceneNumber + '\')"><span>&times;</span></button>';
+    textBlock += '  </div>';
+    textBlock += '  <div class="panel">\n';
+    textBlock += '      <div id="ds' + sceneNumber + '\"></div>\n';
+    textBlock += '      <div class=\"subaccordion\">';
+    textBlock += '          <button onclick="addDesafio(event, \'ds' + sceneNumber + '\')">+ Adicionar Desafio</button>';
+    textBlock += '      </div>';
     textBlock += '  </div>';
     textBlock += '</div>';
 
     element.innerHTML = textBlock;
 
-    var scene = new Scene('cena' + sceneNumber, element);
+    var scene = new Scene('c' + sceneNumber, element);
     jorney.scene.push(scene);
 
     $('#cenaSelector').append(element);
@@ -85,40 +88,67 @@ function addCena(evt) {
 }
 
 function addDesafio(evt, selector) {
-    var scene = jorney.getSceneByName('cena' + selector[selector.length-1]);
+    var scene = jorney.getSceneByName('c' + selector.substring(2));
+
+    console.log('c' + selector.substring(2));
 
     var numeroDesafio = scene.getNextChallengeNumber;
     var textBlock = '';
-    textBlock += '<div class=\"subaccordion\">';
+    textBlock += '<div id="c' + selector.substring(2) + 'd' + numeroDesafio + '" class="subaccordion desafio">';
     textBlock += '  <button class=\"col-8\" onclick=\"openDesafio(event)\">Desafio ' + numeroDesafio + '</button>';
-    textBlock += '  <button class=\"close col-4\" onclick=\"deleteDesafio(event)\">x</button>';
+    textBlock += '  <button class="delete col-4" onclick="deleteWarning(event, \'c' + selector.substring(2) + 'd' + numeroDesafio + '\')"><span>&times;</span></button>';
     textBlock += '</div>';
 
     $('#' + selector).append(textBlock);
 }
 
-function deleteCena(evt, cena) {
-    var element = evt.currentTarget.parentNode;
-    var desafios = document.getElementById(cena);
-    desafios.parentNode.removeChild(desafios);
-    element.parentNode.removeChild(element);
-    
-    var sceneNumber = cena.substring(4);
+function deleteWarning(evt, cena) {
+    var textBlock = '';
+    textBlock += '<div id="modal-delete-confirmation" class="modal">';
+    textBlock += '  <div class="modal-content">';
+    textBlock += '      <div class="modal-body">';
+    textBlock += '          <p>Tem certeza que desaja excluir?</p>';
+    textBlock += '      </div>';
+    textBlock += '      <div class="modal-footer">';
+    if(cena.indexOf('d') > -1){
+        textBlock += '          <button class="btn red" onclick="deleteDesafio(event, \'' + cena + '\')">Excluir</button>';
+    } else {
+        textBlock += '          <button class="btn red" onclick="deleteCena(event, \'' + cena + '\')">Excluir</button>';
+    }
 
-    jorney.deleteSceneByName('cene' + sceneNumber);
+    textBlock += '          <button id="deleteBtn" class="btn" onclick="closeModal(\'modal-delete-confirmation\')">Cancelar</button>';
+    textBlock += '      </div>';
+    textBlock += '  </div>';
+    textBlock += '</div>';
+    $('body').append(textBlock);
 
-    console.log(sceneNumber);
-    
-    removeSceneCircleFromJourney(sceneNumber);
+    var modal = document.getElementById('modal-delete-confirmation');
+    modal.style.display = "block";
 }
 
-function deleteDesafio(evt, selector) {
-    var element = evt.currentTarget.parentNode;
-    var id = element.parentNode.id;
-    var scene = jorney.getSceneByName('cene' + id[id.length-1]);
+function deleteCena(evt, cena) {
+    var element = document.getElementById(cena);
     element.parentNode.removeChild(element);
 
+    var sceneNumber = cena.substring(1);
 
+    jorney.deleteSceneByName('c' + sceneNumber);
+
+    console.log(sceneNumber);
+
+    removeSceneCircleFromJourney(sceneNumber);
+
+    var modal = document.getElementById('modal-delete-confirmation');
+    modal.parentNode.removeChild(modal);
+}
+
+function deleteDesafio(evt, desafio) {
+    var element = document.getElementById(desafio);
+    var scene = jorney.getSceneByName(desafio.split('d'));
+    element.parentNode.removeChild(element);
+
+    var modal = document.getElementById('modal-delete-confirmation');
+    modal.parentNode.removeChild(modal);
 }
 
 $("#selecionar-imagem").change(function(){
@@ -134,6 +164,10 @@ $("#selecionar-imagem").change(function(){
     }
 });
 
+function closeModal(modalName){
+    var modal = document.getElementById(modalName);
+    modal.style.display = "none";
+}
 
 
 
