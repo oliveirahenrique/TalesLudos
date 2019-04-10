@@ -23,13 +23,22 @@
 				<div id="cenaSelector">
 					<!-- Exemplo -->
 					<!--
-					<div class="accordion">
-						<button class="col-8" onclick="openScene(event, 'cena1')">Cena 1</button>
-						<button class="close col-3" onclick="deleteCena(event, 'cena1')">x</button>
-					</div>
-					<div id="cena1" class="panel">
-						<div id="desafio1"></div>
-						<button class="subaccordion" onclick="addDesafio(event, 'desafio1')">+ Adicionar Desafio</button>
+					<div id="c1">
+						<div class="accordion">
+							<button class="col-8" onclick="openScene(event, 'c1')">Cena 1</button>
+							<button class="delete col-4" onclick="deleteWarning(event, 'c1')"><span>&times;</span></button>
+						</div>
+						<div class="panel">
+							<div id="ds1">
+								<div id="c1d1" class="subaccordion desafio">
+									<button class="col-8" onclick="openDesafio(event)">Desafio 1</button>
+									<button class="delete col-4" onclick="deleteWarning(event, 'c1d1')"><span>&times;</span></button>
+								</div>
+							</div>
+							<div class="subaccordion">
+								<button onclick="addDesafio(event, 'ds1')">+ Adicionar Desafio</button>
+							</div>
+						</div>
 					</div>
 					-->
 					<!-- End -->
@@ -46,9 +55,10 @@
 				<button class="tablinks" onclick="openTab(event, 'Cena')">Cena</button>
 				<button class="tablinks" onclick="openTab(event, 'Desafio')">Desafio</button>
 			</div>
-			<label for="selecionar-imagem" class="btn" type="file"><i class="fa fa-picture-o"></i> Trocar Fundo</label>
+			<label for="selecionar-imagem" class="btn right" type="file"><i class="fa fa-picture-o"></i> Trocar Fundo</label>
 			<input id="selecionar-imagem" type="file"/ style="display:none;">
-			<button class="btn"><i class="fa fa-play"></i> Visualizar</button>
+			<button class="btn right"><i class="fa fa-play"></i> Visualizar</button>
+			<button class="btn right"><i class="fa fa-download"></i> Exportar</button>
 			<div id="Jornada" class="frame tabcontent"></div>
 			<div id="Cena" class="frame tabcontent"></div>
 			<div id="Desafio" class="frame tabcontent"></div>
@@ -81,9 +91,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<script src="https://unpkg.com/konva@2.4.2/konva.min.js"></script>
-	
+
+
+	<script src="jorney.js"></script>
+	<script src="scene.js"></script>
 	<script src="./scripts.js"></script>
 	<script src='./konvaScripts.js'></script>
 </body>
