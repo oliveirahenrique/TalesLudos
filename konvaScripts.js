@@ -13,6 +13,24 @@ var scenes = new Array();
 
 var X, Y, BoolClick = false;
 
+var num;
+
+var rect = new Konva.Rect({
+	x: 0,
+	y: 0,
+	width: stageWidth,
+	height: stageHeight
+});
+
+rect.on('click', function() {
+	if(BoolClick){
+		BoolClick = false;
+	}
+});
+
+scenesLayer.add(rect);
+scenesLayer.draw();
+
 window.addSceneCircleInJourney = function (sceneNumber)
 {
 	var group = new Konva.Group({
@@ -73,11 +91,12 @@ window.addSceneCircleInJourney = function (sceneNumber)
             X = pos.x;
             Y = pos.y;
             BoolClick = true;
+            num = this.name();
         } else {
             BoolClick = false;
+            var temp = '' + num + ' ' + this.name();
             var arrow = new Konva.Arrow({
-
-                draggable: true,
+				name: temp,
                 points: [X, Y, pos.x, pos.y],
                 pointerLength: 10,
                 pointerWidth: 10,
@@ -88,6 +107,7 @@ window.addSceneCircleInJourney = function (sceneNumber)
             //Funções de verificação do desenho da seta..
             scenesLayer.add(arrow);
             scenesLayer.draw();
+			console.log(arrow.name());
         }
     });
 
@@ -103,13 +123,27 @@ window.AddLink = function(scenesLayer , group)
     });
 }
 
+function findSuffix(word){
+    var shapes = journeyStage.find('Arrow');
+    var temp = new Array();
+
+    shapes.forEach(function(element, index, array) {
+        if(element.name().endsWith(word))
+            temp.push(element);
+    })
+
+    return temp;
+}
 
 window.removeSceneCircleFromJourney = function (sceneNumber)
 {
+
 	var groupToDestroy = journeyStage.find('.'+sceneNumber);
-	
+
+	var arrowToDestroy = findSuffix(''+sceneNumber);
+
 	groupToDestroy.destroy();
-	
+
 	//scenes[sceneNumber-1].destroy();
 	
 	scenesLayer.draw();
