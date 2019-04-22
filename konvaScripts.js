@@ -84,6 +84,8 @@ window.addSceneCircleInJourney = function (sceneNumber)
 	scenesLayer.add(group);
 	scenesLayer.draw();
 
+     
+
 	group.on('click tap', function() {
         var pos = journeyStage.getPointerPosition();
 
@@ -107,21 +109,38 @@ window.addSceneCircleInJourney = function (sceneNumber)
             //Funções de verificação do desenho da seta..
             scenesLayer.add(arrow);
             scenesLayer.draw();
-			console.log(arrow.name());
+            //anim.start();
+
+			
         }
     });
 
+ 	 group.on('mouseenter', function() {
+        journeyStage.container().style.cursor = 'pointer';
+      });
+
+    group.on('mouseleave', function() {
+       journeyStage.container().style.cursor = 'default';
+      });
+
+	
+   
 	//AddLink(scenesLayer);
 }
 
-window.AddLink = function(scenesLayer , group)
-{
-	journeyStage.on('click', function(group) {
-		if(BoolClick){
-			BoolClick = false;
+/*var anim = new Konva.Animation(function(frame) {
+		var arrow = findSuffix('2');
+		if(arrow != null) {		
+			var pointsArrow = arrow[0].points();
+		    var pos = journeyStage.getPointerPosition();
+			
+			console.log(arrow[0].points());
+			arrow[0].points(pointsArrow[0], pointsArrow[1], pos.x, pos.y); 
+            scenesLayer.add(arrow);
+			scenesLayer.draw();       
 		}
-    });
-}
+
+    }, scenesLayer); */
 
 function findSuffix(word){
     var shapes = journeyStage.find('Arrow');
