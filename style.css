@@ -345,8 +345,7 @@ button.delete{
 	border-width: thin;
 	border-color: #003990;
 	position: relative;
-	width: 95%;
-	height: 80vh;
+	width: 100%;
 	margin-right: 50px;
 	padding-right: 0px;
 	padding-bottom: 0;

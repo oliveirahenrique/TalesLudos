@@ -21,6 +21,13 @@ function openTab(evt, tab) {
 
 document.getElementById("defaultOpen").click();
 
+$('.frame').css('width','100%');
+$('.frame').height($('.frame').width() / 2.031);
+
+$(window).resize(function(){
+    $('.frame').css('width','100%');
+    $('.frame').height($('.frame').width() / 2.031);
+});
 
 function openScene(evt, scene) {
     // Declare all variables
@@ -168,7 +175,4 @@ function closeModal(modalName){
     var modal = document.getElementById(modalName);
     modal.style.display = "none";
 }
-
-
-
 
