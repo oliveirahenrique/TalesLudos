@@ -19,7 +19,7 @@ body {
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
+
 	margin-right: -15px;
 	margin-left: -15px;
 }
@@ -446,3 +446,28 @@ button.upload_button {
 	cursor: pointer;
 }
 /*End*/
+
+.icon {
+	display: none;
+}
+
+@media screen and (max-width: 1000px) {
+	.bar div {display: none;}
+	.bar a.icon {
+		float: left;
+		display: block;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.bar.responsive {position: relative;}
+	.bar.responsive a.icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.bar.responsive div {
+		float: none;
+		display: block;
+	}
+}

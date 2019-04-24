@@ -29,6 +29,18 @@ $(window).resize(function(){
     $('.frame').height($('.frame').width() / 2.031);
 });
 
+function menu() {
+    var x = document.getElementById("bar");
+    if (x.className === "col bar") {
+        x.className += " responsive";
+        x.className.replace(" col", "");
+        console.log('a');
+    } else {
+        x.className = "col bar";
+        console.log('b');
+    }
+}
+
 function openScene(evt, scene) {
     // Declare all variables
     var i, tabcontent, tablinks;
