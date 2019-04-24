@@ -95,22 +95,24 @@ window.addSceneCircleInJourney = function (sceneNumber)
             BoolClick = true;
             num = this.name();
         } else {
-            BoolClick = false;
-            var temp = '' + num + ' ' + this.name();
-            var arrow = new Konva.Arrow({
-				name: temp,
-                points: [X, Y, pos.x, pos.y],
-                pointerLength: 10,
-                pointerWidth: 10,
-                fill: 'black',
-                stroke: 'black',
-                strokeWidth: 0,
-            });
-            //Funções de verificação do desenho da seta..
-            scenesLayer.add(arrow);
-            scenesLayer.draw();
-            //anim.start();
 
+        	if(num != this.name()){
+	            BoolClick = false;
+	            var temp = '' + num + ' ' + this.name();
+	            var arrow = new Konva.Arrow({
+					name: temp,
+	                points: [X, Y, pos.x, pos.y],
+	                pointerLength: 10,
+	                pointerWidth: 10,
+	                fill: 'black',
+	                stroke: 'black',
+	                strokeWidth: 0,
+	            });
+	            //Funções de verificação do desenho da seta..
+	            scenesLayer.add(arrow);
+	            scenesLayer.draw();
+	            //anim.start();
+        }
 			
         }
     });
