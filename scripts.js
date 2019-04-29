@@ -19,6 +19,8 @@ function openTab(evt, tab) {
     evt.currentTarget.className += " active";
 }
 
+document.getElementById("defaultOpen").click();
+
 $('.frame').css('width','100%');
 $('.frame').height($('.frame').width() / 2.031);
 
