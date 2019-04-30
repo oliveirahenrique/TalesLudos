@@ -460,7 +460,9 @@ button.upload_button {
 }
 
 @media screen and (max-width: 1000px) {
-	.bar.responsive {position: relative;}
+	.bar.responsive {
+		position: relative;
+	}
 	.bar.responsive a.icon {
 		position: absolute;
 		right: 0;
