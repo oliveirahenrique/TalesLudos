@@ -19,10 +19,22 @@ function openTab(evt, tab) {
     evt.currentTarget.className += " active";
 }
 
+document.getElementById("defaultOpen").click();
+
 $('.frame').css('width','100%');
 $('.frame').height($('.frame').width() / 2.031);
 
 $(window).resize(function(){
+    var x = document.getElementById("frame-div");
+    if ($(window).width() < 1000) {
+        if(x.className === "col-8 frame-fixer") {
+            x.className = "col-10 frame-fixer";
+        }
+    }
+    else {
+        if(x.className === "col-10 frame-fixer")
+            x.className = "col-8 frame-fixer";
+    }
     $('.frame').css('width','100%');
     $('.frame').height($('.frame').width() / 2.031);
 });
