@@ -396,6 +396,7 @@ button.upload_button {
 /* Modal Header */
 .modal-header {
 	padding: 2px 16px;
+	margin-bottom: 20px; 
 }
 
 /* Modal Body */
@@ -470,4 +471,21 @@ button.upload_button {
 		float: none;
 		display: block;
 	}
+}
+
+input[type = text], input[type = password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0px;
+	display: inline;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+
+}
+
+.login-btn{
+	width: 40%;
+	margin-bottom: 10px;
+	background: #0099f6;
+	color: white;
 }

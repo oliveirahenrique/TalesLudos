@@ -186,3 +186,7 @@ function closeModal(modalName){
     modal.style.display = "none";
 }
 
+function login_function(){
+   document.getElementById("modal-login").style.display = "block";
+}
+
