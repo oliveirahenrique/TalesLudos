@@ -181,11 +181,14 @@ function deleteDesafio(evt, desafio) {
 }
 
 $("#selecionar-imagem").change(function(){
+$("#file-input").change(function(){
 	var file = this.files[0];
     var reader = new FileReader();
     reader.onloadend = function () {
        $('#Jornada').css('background-image', 'url("' + reader.result + '")');
        $('#Jornada').css('background-size', 'cover');
+       $('#box-jornada').css('background-image', 'url("' + reader.result + '")');
+       $('#box-jornada').css('background-size', 'cover');
     }
     if (file) {
         reader.readAsDataURL(file);

@@ -327,7 +327,6 @@ button.delete{
 
 .tabcontent {
 	background-color: white;
-	display: none;
 	overflow: hidden;
 }
 /*End*/
@@ -344,7 +343,6 @@ button.delete{
 	border-style: solid;
 	border-width: thin;
 	border-color: #003990;
-	position: relative;
 	width: 100%;
 	margin-right: 50px;
 	padding-right: 0px;
@@ -383,7 +381,6 @@ button.upload_button {
 .modal {
 	display: none;
 	position: fixed;
-	z-index: 1;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -462,11 +459,9 @@ button.upload_button {
 
 @media screen and (max-width: 1000px) {
 	.bar.responsive {
-		position: relative;
 	}
 	.bar.responsive a.icon {
 		position: absolute;
-		right: 0;
 		top: 0;
 	}
 	.bar.responsive div {
